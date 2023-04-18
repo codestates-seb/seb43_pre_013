@@ -1,15 +1,46 @@
 // GoogleLoginButton.js
+import styled from "styled-components";
+
+const Button = styled.button`
+  background-color: white;
+  color: #737373;
+  border: 1px solid #737373;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f2f2f2;
+    border-color: #737373;
+  }
+`;
+
+const Logo = styled.img`
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+`;
+
+const StyleLink = styled.a`
+  color: #737373;
+  text-decoration: none;
+`;
 
 const GoogleLogin = () => {
-  const clientId = "YOUR_GOOGLE_CLIENT_ID";
-  const redirectUri = "YOUR_BACKEND_SERVER_URL/login/oauth2/code/google";
+  const host = "http:host";
+  const oauthEndpoint = "/oauth2/authorization/google";
+  const redirectUri = "https://http:host/login/oauth2/code/google";
 
-  const handleClick = () => {
-    const url = `https://accounts.google.com/o/oauth2/v2/auth?scope=profile%20email&access_type=online&response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}`;
-    window.location.href = url;
-  };
+  const url = `${host}${oauthEndpoint}?redirect_uri=${redirectUri}`;
+  const imgScr = "https://developers.google.com/identity/images/g-logo.png";
 
-  return <button onClick={handleClick}>Login with Google</button>;
+  return (
+    <Button>
+      <Logo src={imgScr} alt="Google Logo" />
+      {/* <a></a> */}
+      <StyleLink href={url}>Login with Google</StyleLink>
+    </Button>
+  );
 };
 
 export default GoogleLogin;
