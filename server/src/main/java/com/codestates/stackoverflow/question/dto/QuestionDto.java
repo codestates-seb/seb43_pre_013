@@ -1,9 +1,11 @@
 package com.codestates.stackoverflow.question.dto;
 
+import com.codestates.stackoverflow.answer.entity.Answer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class QuestionDto {
 
@@ -34,6 +36,7 @@ public class QuestionDto {
         private String questionContent;
         private int view;
         private LocalDateTime questionRegistDate;
+        private List<Answer> answers;
     }
 
     @Getter

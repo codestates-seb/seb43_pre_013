@@ -1,5 +1,9 @@
 package com.codestates.stackoverflow.question.controller;
 
+import com.codestates.stackoverflow.answer.entity.Answer;
+import com.codestates.stackoverflow.answer.mapper.AnswerMapper;
+import com.codestates.stackoverflow.answer.service.AnswerService;
+import com.codestates.stackoverflow.dto.MultiResponseDto;
 import com.codestates.stackoverflow.question.dto.QuestionDto;
 import com.codestates.stackoverflow.question.entity.Question;
 import com.codestates.stackoverflow.question.mapper.QuestionMapper;
@@ -14,11 +18,16 @@ import java.util.List;
 @RequestMapping("/boards/questions")
 public class QuestionController {
     private final QuestionService questionService;
+    private final AnswerService answerService;
     private final QuestionMapper mapper;
 
-    public QuestionController(QuestionService questionService, QuestionMapper mapper){
+    private final AnswerMapper mapper2;
+
+    public QuestionController(QuestionService questionService,AnswerService answerService, QuestionMapper mapper, AnswerMapper mapper2){
         this.questionService = questionService;
+        this.answerService = answerService;
         this.mapper = mapper;
+        this.mapper2 = mapper2;
     }
 
     @PostMapping
@@ -29,7 +38,7 @@ public class QuestionController {
         return new ResponseEntity<>(mapper.questionToQuestionResponse(createdQuestion), HttpStatus.CREATED);
     }
 
-    @PutMapping({"/{question-id}"})
+    @PutMapping("/{question-id}")
     public ResponseEntity putQuestion(@PathVariable("question-id") long questionId,
                                       @RequestBody QuestionDto.Put requestBody){
         requestBody.setQuestionId(questionId);
@@ -42,13 +51,15 @@ public class QuestionController {
     @GetMapping("/{question-id}")
     public ResponseEntity getQuestion(@PathVariable("question-id") long questionId){
         Question question = questionService.findQuestion(questionId);
+        //List<Answer> answers = answerService.findAnswers();
 
-        return new ResponseEntity<>(mapper.questionToQuestionResponse(question), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.questionToQuestionResponse(question),HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity getQuestions(@RequestParam int option){
         List<Question> questions = questionService.findQuestions(option);
+
 
         return new ResponseEntity<>(mapper.questionToQuestionResponses(questions), HttpStatus.OK);
     }
