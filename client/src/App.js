@@ -1,3 +1,5 @@
+// import React from "react";
+import Answer from "./components/Answer";
 import { Counter } from "./features/counter/Counter";
 //컴포넌트
 import NavigationBar from "./components/NavigationBar";
@@ -19,8 +21,8 @@ function App() {
         <Route path="/userinfo" element={<UserInfo />}></Route>
         <Route path="/question" element={<UserInfo />}></Route>
       </Routes>
+      <Answer />
     </div>
   );
 }
-
 export default App;
