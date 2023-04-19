@@ -10,7 +10,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -35,6 +37,8 @@ public class AnswerService {
 
     public Answer updateAnswer(Answer answer){
         Answer findAnswer = findVerifiedAnswer(answer.getAnswerId());
+        Question findquestion = questionService.findVerifiedQuestion(findAnswer.getQuestion().getQuestionId());
+        List<Answer> answers = findquestion.getAnswers();
 
         Optional.ofNullable(answer.getAnswerTitle())
                 .ifPresent(title -> findAnswer.setAnswerTitle(title));
@@ -42,6 +46,9 @@ public class AnswerService {
                 .ifPresent(content -> findAnswer.setAnswerContent(content));
         findAnswer.setAnswerModifyDate(LocalDateTime.now());
         findAnswer.setAnswerStatus(answer.getAnswerStatus());
+        answers.removeIf(answer1 -> Objects.equals(answer1.getAnswerId(), findAnswer.getAnswerId()));
+        answers.add(findAnswer);
+
 
         return answerRepository.save(findAnswer);
     }

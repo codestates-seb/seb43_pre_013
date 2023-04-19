@@ -36,7 +36,6 @@ public class AnswerController {
     public ResponseEntity putAnswer(@PathVariable("answer-id") long answerId,
                                     @RequestBody AnswerDto.Put requestBody){
         requestBody.setAnswerId(answerId);
-
         Answer answer = answerService.updateAnswer(mapper.answerPutToAnswer(requestBody));
 
         return new ResponseEntity<>(mapper.answerToAnswerResponse(answer), HttpStatus.OK);
