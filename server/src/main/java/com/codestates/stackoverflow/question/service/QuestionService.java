@@ -4,21 +4,23 @@ import com.codestates.stackoverflow.exception.BusinessLogicException;
 import com.codestates.stackoverflow.exception.ExceptionCode;
 import com.codestates.stackoverflow.question.entity.Question;
 import com.codestates.stackoverflow.question.repository.QuestionRepository;
+import com.codestates.stackoverflow.user.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
 @Service
+@RequiredArgsConstructor
 public class QuestionService {
     private final QuestionRepository questionRepository;
+    private final UserRepository userRepository;
 
-    public QuestionService(QuestionRepository questionRepository){
-        this.questionRepository = questionRepository;
-    }
 
     public Question createQuestion(Question question){
         Question savedQuestion = questionRepository.save(question);
