@@ -24,6 +24,7 @@ dependencies {
     implementation'org.springframework.boot:spring-boot-starter-oauth2-client'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java:8.0.28'
+    implementation "io.springfox:springfox-boot-starter:3.0.0"
     implementation'com.h2database:h2'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
