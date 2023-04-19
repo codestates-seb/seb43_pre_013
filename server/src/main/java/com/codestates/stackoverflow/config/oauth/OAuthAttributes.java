@@ -7,6 +7,7 @@ import lombok.Getter;
 
 import java.util.Map;
 
+
 @Getter
 public class OAuthAttributes {
     private final Map<String, Object> attributes;
