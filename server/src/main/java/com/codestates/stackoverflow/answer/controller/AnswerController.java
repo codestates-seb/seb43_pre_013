@@ -4,6 +4,8 @@ import com.codestates.stackoverflow.answer.dto.AnswerDto;
 import com.codestates.stackoverflow.answer.entity.Answer;
 import com.codestates.stackoverflow.answer.mapper.AnswerMapper;
 import com.codestates.stackoverflow.answer.service.AnswerService;
+import com.codestates.stackoverflow.config.oauth.LoginUser;
+import com.codestates.stackoverflow.user.dto.UserDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +27,9 @@ public class AnswerController {
 
     @PostMapping("/{question-id}")
     public ResponseEntity postAnswer(@PathVariable("question-id") long questionId,
-                                     @RequestBody AnswerDto.Post requestBody){
+                                     @RequestBody AnswerDto.Post requestBody,
+                                     @LoginUser UserDto user){
+        requestBody.setUserId(user.getUserId());
         requestBody.setQuestionId(questionId);
         Answer answer = mapper.answerPostToAnswer(requestBody);
         Answer createdAnswer = answerService.createAnswer(answer);
@@ -35,7 +39,9 @@ public class AnswerController {
 
     @PutMapping("/*/{answer-id}")
     public ResponseEntity putAnswer(@PathVariable("answer-id") long answerId,
-                                    @RequestBody AnswerDto.Put requestBody){
+                                    @RequestBody AnswerDto.Put requestBody,
+                                    @LoginUser UserDto user){
+        requestBody.setUserId(user.getUserId());
         requestBody.setAnswerId(answerId);
         Answer answer = answerService.updateAnswer(mapper.answerPutToAnswer(requestBody));
 

@@ -1,6 +1,7 @@
 package com.codestates.stackoverflow.answer.entity;
 
 import com.codestates.stackoverflow.question.entity.Question;
+import com.codestates.stackoverflow.user.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,7 +42,10 @@ public class Answer {
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
 
-
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
     public void setQuestion(Question question){
         this.question = question;
