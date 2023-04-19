@@ -1,6 +1,7 @@
 package com.codestates.stackoverflow.question.entity;
 
 import com.codestates.stackoverflow.answer.entity.Answer;
+import com.codestates.stackoverflow.user.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
