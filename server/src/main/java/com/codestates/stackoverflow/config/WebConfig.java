@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
+
 @RequiredArgsConstructor
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
