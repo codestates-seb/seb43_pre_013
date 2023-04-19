@@ -1,5 +1,6 @@
 package com.codestates.stackoverflow.config;
 
+import com.codestates.stackoverflow.config.oauth.MyLoginSuccessHandler;
 import com.codestates.stackoverflow.config.oauth.OAuth2UserInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +20,7 @@ public class SecurityConfig {
 
     private final AuthenticationEntryPoint authenticationEntryPoint;
 
-    //private final MyLoginSuccessHandler myLoginSuccessHandler;
+    private final MyLoginSuccessHandler myLoginSuccessHandler;
 
 
     @Bean
@@ -51,9 +52,13 @@ public class SecurityConfig {
                         .userInfoEndpoint()
                         .userService(oAuth2UserInfoService)
                         .and()
-                        //.successHandler(myLoginSuccessHandler)
+                        .successHandler(myLoginSuccessHandler)
                 );
         return http.build();
     }
 
+    @Bean
+    public AuthenticationEntryPoint authenticationEntryPoint() {
+        return new CustomAuthenticationEntryPoint();
+    }
 }
