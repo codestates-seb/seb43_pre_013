@@ -15,6 +15,8 @@ const Navbar = styled.nav`
   right: 0;
   height: 60px; //컨텐츠 가려짐을 위해 높이추가
   z-index: 100;
+  box-sizing: border-box;
+  border-top: 3px solid #f97324;
 `;
 
 const Logo = styled(Link)`
