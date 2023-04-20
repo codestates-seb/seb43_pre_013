@@ -1,8 +1,9 @@
 // import React from "react";
-import Answer from "./components/Answer";
-// import { Counter } from "./features/counter/Counter";
+// // import { Counter } from "./features/counter/Counter";
 //컴포넌트
 import NavigationBar from "./components/NavigationBar";
+import Answer from "./components/Answer";
+
 //페이지
 import MainPage from "./pages/MainPage";
 import Login from "./pages/Login";
