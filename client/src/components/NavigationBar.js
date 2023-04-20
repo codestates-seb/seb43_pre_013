@@ -13,6 +13,7 @@ const Navbar = styled.nav`
   top: 0; //추가
   left: 0; //추가
   right: 0;
+  height: 60px; //컨텐츠 가려짐을 위해 높이추가
   z-index: 100;
 `;
 
