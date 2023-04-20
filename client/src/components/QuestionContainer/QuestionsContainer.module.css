@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.ListContainer {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  border-top: 1px solid gray;
+  padding: 5px;
+  height: 15vh;
+  width: 65vw;
+  list-style-type: none;
+  position: relative;
+}
+
+.Title {
+  color: skyblue;
+  padding: 5px;
+}
+
+.miniContent {
+  padding: 5px;
+}
+
+.end {
+  position: absolute;
+  padding: 10px;
+  bottom: 0;
+  right: 0;
+}
