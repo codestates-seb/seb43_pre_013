@@ -14,6 +14,9 @@ const Navbar = styled.nav`
   left: 0; //추가
   right: 0;
   z-index: 100;
+  height: 60px;
+  box-sizing: border-box;
+  border-top: 3px solid #f97324;
 `;
 
 const Logo = styled(Link)`
