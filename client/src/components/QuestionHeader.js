@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const QuestionsContainer = () => {
+const QuestionsHeader = () => {
   return (
     <Container>
       <TopHalf>
@@ -69,4 +69,4 @@ const OptionBtn = styled.button`
   }
 `;
 
-export default QuestionsContainer;
+export default QuestionsHeader;

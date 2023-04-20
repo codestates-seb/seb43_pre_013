@@ -3,6 +3,7 @@
 //컴포넌트
 import NavigationBar from "./components/NavigationBar";
 import Answer from "./components/Answer";
+import AskQuestion from "./components/askQuestion";
 
 //페이지
 import MainPage from "./pages/MainPage";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/userinfo" element={<UserInfo />}></Route>
           <Route path="/question" element={<UserInfo />}></Route>
           <Route path="/answer" element={<Answer />}></Route>
+          <Route path="/ask" element={<AskQuestion />}></Route>
         </Routes>
       </ContentWrapper>
     </div>
@@ -33,7 +35,6 @@ export default App;
 
 const ContentWrapper = styled.div`
   margin-top: 60px;
-  display: flex;
-  justify-content: center; //수평 중앙 정렬
+  //수평 중앙 정렬
   /* align-items: center; // 수직 중앙 정렬 */
 `;
