@@ -1,0 +1,17 @@
+.ql-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.ql-toolbar .ql-formats {
+  margin-right: 15px;
+}
+
+.ql-toolbar .ql-formats:last-child {
+  margin-right: 0;
+}

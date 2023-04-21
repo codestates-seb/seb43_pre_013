@@ -3,7 +3,7 @@
 //컴포넌트
 import NavigationBar from "./components/NavigationBar";
 import Answer from "./components/Answer";
-import AskQuestion from "./components/askQuestion";
+import AskQuestion from "./components/AskQuestion";
 
 //페이지
 import MainPage from "./pages/MainPage";
