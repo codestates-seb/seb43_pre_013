@@ -6,6 +6,7 @@ import com.codestates.stackoverflow.answer.mapper.AnswerMapper;
 import com.codestates.stackoverflow.answer.service.AnswerService;
 import com.codestates.stackoverflow.config.oauth.LoginUser;
 import com.codestates.stackoverflow.user.dto.UserDto;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/boards/answers")
+@Api(tags = "답변")
 public class AnswerController {
 
     private final AnswerService answerService;
