@@ -33,12 +33,12 @@ public class Comment {
     private LocalDateTime commentModifyDate = LocalDateTime.now();
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "ANSWER_ID")
+    @JoinColumn(name = "answer_id")
     private Answer answer;
 
 
