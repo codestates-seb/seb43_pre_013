@@ -4,6 +4,7 @@ import com.codestates.stackoverflow.comment.dto.CommentDto;
 import com.codestates.stackoverflow.comment.entity.Comment;
 import com.codestates.stackoverflow.comment.mapper.CommentMapper;
 import com.codestates.stackoverflow.comment.service.CommentService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor // final or @Not Null이 붙은 필드의 생성자를 자동 생성
 @RequestMapping("boards/comments")
+@Api(tags = "댓글")
 public class CommentController {
 
     private final CommentMapper commentMapper;
