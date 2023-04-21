@@ -10,6 +10,7 @@ import com.codestates.stackoverflow.config.oauth.LoginUser;
 import com.codestates.stackoverflow.user.dto.UserDto;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
