@@ -20,7 +20,8 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.codestates.stackoverflow"))
                 //.paths(PathSelectors.regex("/api/v1/.*"))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .apiInfo(apiInfo());
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
