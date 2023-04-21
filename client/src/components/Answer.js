@@ -1,7 +1,54 @@
 import { useMemo, useRef, useState } from "react";
+import styled from "styled-components";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
-import "./Answer.css";
+
+const Container = styled.div`
+  min-height: calc(100vh - 60px); //스크롤 했을 시 배경색이 달라지는 문제점 해결
+  background-color: #ececec;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; //상하기준 중심
+  align-items: center; //좌우기준 중심
+`;
+
+const SubmitButton = styled.button`
+  margin-left: 660px;
+  width: 180px;
+  height: 50px;
+  font-size: 18px;
+  border-radius: 50px;
+  background-color: #68bdff;
+`;
+
+const SubmitButtonContainer = styled.div`
+  padding: 5px;
+  margin: 20px;
+`;
+
+const TextEditor = styled(ReactQuill)`
+  width: 800px;
+  height: 250px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  margin-left: 17px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const TitleName = styled.h2`
+  padding-top: 50px;
+  padding-bottom: 20px;
+  margin-right: 690px;
+`;
+
+const AnswerContainer = styled.div`
+  border-style: solid;
+  border-color: #d3d3d3;
+  width: 850px;
+  height: 300px;
+`;
 
 function Answer() {
   const quillRef = useRef();
@@ -20,37 +67,27 @@ function Answer() {
       },
     };
   }, []);
+
   return (
-    <main>
-      <div className="headname">
-        <div className="head1">
-          What did you try and what were you expecting?
-        </div>
-        <div className="head2">
-          Describe what you tried, what you expected to happen, and what
-          actually resulted, Minimum 20 characters.
-        </div>
-      </div>
-      <div className="answer-container">
-        <ReactQuill
+    <Container>
+      <TitleName>Your Answer</TitleName>
+      <AnswerContainer>
+        <TextEditor
           className="text-editor"
-          placeholder="Please answer"
+          placeholder="Please type"
           theme="snow"
           ref={quillRef}
           value={content}
           onChange={setContent}
           modules={modules}
         />
-        <div className="submit-button-container">
-          <button
-            className="submit-button"
-            onClick={() => console.log(content)}
-          >
-            Post Your Answer
-          </button>
-        </div>
-      </div>
-    </main>
+      </AnswerContainer>
+      <SubmitButtonContainer>
+        <SubmitButton onClick={() => console.log(content)}>
+          Post Your Answer
+        </SubmitButton>
+      </SubmitButtonContainer>
+    </Container>
   );
 }
 
