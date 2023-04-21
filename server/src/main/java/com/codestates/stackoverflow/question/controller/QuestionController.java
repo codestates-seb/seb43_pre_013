@@ -1,13 +1,12 @@
 package com.codestates.stackoverflow.question.controller;
 
-import com.codestates.stackoverflow.answer.entity.Answer;
-import com.codestates.stackoverflow.answer.mapper.AnswerMapper;
-import com.codestates.stackoverflow.answer.service.AnswerService;
-import com.codestates.stackoverflow.dto.MultiResponseDto;
+import com.codestates.stackoverflow.config.oauth.LoginUser;
 import com.codestates.stackoverflow.question.dto.QuestionDto;
 import com.codestates.stackoverflow.question.entity.Question;
 import com.codestates.stackoverflow.question.mapper.QuestionMapper;
 import com.codestates.stackoverflow.question.service.QuestionService;
+import com.codestates.stackoverflow.user.dto.UserDto;
+import com.codestates.stackoverflow.user.entity.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,20 +18,18 @@ import java.util.List;
 @RequestMapping("/boards/questions")
 public class QuestionController {
     private final QuestionService questionService;
-    private final AnswerService answerService;
     private final QuestionMapper mapper;
 
-    private final AnswerMapper mapper2;
 
-    public QuestionController(QuestionService questionService,AnswerService answerService, QuestionMapper mapper, AnswerMapper mapper2){
+    public QuestionController(QuestionService questionService, QuestionMapper mapper){
         this.questionService = questionService;
-        this.answerService = answerService;
         this.mapper = mapper;
-        this.mapper2 = mapper2;
     }
 
     @PostMapping
-    public ResponseEntity postQuestion(@RequestBody QuestionDto.Post requestBody){
+    public ResponseEntity postQuestion(@RequestBody QuestionDto.Post requestBody
+                                       ){
+        requestBody.setUserId(5);
         Question question = mapper.questionPostToQuestion(requestBody);
         Question createdQuestion = questionService.createQuestion(question);
 
@@ -41,7 +38,9 @@ public class QuestionController {
 
     @PutMapping("/{question-id}")
     public ResponseEntity putQuestion(@PathVariable("question-id") long questionId,
-                                      @RequestBody QuestionDto.Put requestBody){
+                                      @RequestBody QuestionDto.Put requestBody
+                                      ){
+        requestBody.setUserId(5);
         requestBody.setQuestionId(questionId);
 
         Question question = questionService.updateQuestion(mapper.questionPutToQuestion(requestBody));
@@ -52,7 +51,6 @@ public class QuestionController {
     @GetMapping("/{question-id}")
     public ResponseEntity getQuestion(@PathVariable("question-id") long questionId){
         Question question = questionService.findQuestion(questionId);
-        //List<Answer> answers = answerService.findAnswers();
 
         return new ResponseEntity<>(mapper.questionToQuestionResponse(question),HttpStatus.OK);
     }

@@ -1,6 +1,8 @@
 package com.codestates.stackoverflow.answer.entity;
 
+import com.codestates.stackoverflow.comment.entity.Comment;
 import com.codestates.stackoverflow.question.entity.Question;
+import com.codestates.stackoverflow.user.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -29,7 +33,7 @@ public class Answer {
     private LocalDateTime answerRegistDate = LocalDateTime.now();
 
     @Column
-    private LocalDateTime answerModifyDate;
+    private LocalDateTime answerModifyDate = LocalDateTime.now();
 
     @Enumerated(value = EnumType.STRING)
     @Column(length = 20, nullable = false)
@@ -41,7 +45,13 @@ public class Answer {
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
+    @OneToMany(mappedBy = "answer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<Comment> comments = new ArrayList<>();
 
     public void setQuestion(Question question){
         this.question = question;
