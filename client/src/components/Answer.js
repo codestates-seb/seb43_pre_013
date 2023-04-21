@@ -35,6 +35,7 @@ const TextEditor = styled(ReactQuill)`
   margin-left: 17px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto; //내용초과시 스크롤기능
 `;
 
 const TitleName = styled.h2`
@@ -46,6 +47,7 @@ const TitleName = styled.h2`
 const AnswerContainer = styled.div`
   border-style: solid;
   border-color: #d3d3d3;
+  background-color: white;
   width: 850px;
   height: 300px;
 `;
@@ -67,7 +69,12 @@ function Answer() {
       },
     };
   }, []);
-
+  const handleSubmit = () => {
+    //콘텐츠 내용만 보이는 함수
+    const quill = quillRef.current.getEditor();
+    const text = quill.getText();
+    console.log(text);
+  };
   return (
     <Container>
       <TitleName>Your Answer</TitleName>
@@ -83,9 +90,7 @@ function Answer() {
         />
       </AnswerContainer>
       <SubmitButtonContainer>
-        <SubmitButton onClick={() => console.log(content)}>
-          Post Your Answer
-        </SubmitButton>
+        <SubmitButton onClick={handleSubmit}>Post Your Answer</SubmitButton>
       </SubmitButtonContainer>
     </Container>
   );
