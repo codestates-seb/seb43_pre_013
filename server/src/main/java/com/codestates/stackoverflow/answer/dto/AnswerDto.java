@@ -1,12 +1,14 @@
 package com.codestates.stackoverflow.answer.dto;
 
 import com.codestates.stackoverflow.answer.entity.Answer;
+import com.codestates.stackoverflow.comment.entity.Comment;
 import com.codestates.stackoverflow.question.entity.Question;
 import com.codestates.stackoverflow.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 public class AnswerDto {
@@ -26,6 +28,7 @@ public class AnswerDto {
         public void setQuestionId(long questionId){
             this.questionId = questionId;
         }
+
         public Question getQuestion(){
             Question question = new Question();
             question.setQuestionId(questionId);
@@ -61,6 +64,7 @@ public class AnswerDto {
         private String answerContent;
         private LocalDateTime answerRegistDate;
         private Answer.AnswerStatus answerStatus;
+        private List<Comment> comments;
 
         public String getAnswerStatus(){
             return answerStatus.getStatus();

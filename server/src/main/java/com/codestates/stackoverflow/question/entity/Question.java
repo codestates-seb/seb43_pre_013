@@ -35,7 +35,7 @@ public class Question {
     private LocalDateTime questionRegistDate = LocalDateTime.now();
 
     @Column
-    private LocalDateTime questionModifyDate;
+    private LocalDateTime questionModifyDate = LocalDateTime.now();
 
     @JsonIgnore
     @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})

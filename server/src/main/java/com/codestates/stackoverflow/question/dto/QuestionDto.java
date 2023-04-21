@@ -15,19 +15,19 @@ public class QuestionDto {
     @Getter
     @AllArgsConstructor
     public static class Post {
-        private long UserId;
+        private long userId;
         private String questionTitle;
         private String questionContent;
 
         public void setUserId(long userId){
-            this.UserId = userId;
+            this.userId = userId;
         }
     }
 
     @Getter
     @AllArgsConstructor
     public static class Put{
-        private long UserId;
+        private long userId;
         private long questionId;
         private String questionTitle;
         private String questionContent;
@@ -37,7 +37,7 @@ public class QuestionDto {
         }
 
         public void setUserId(long userId){
-            this.UserId = userId;
+            this.userId = userId;
         }
     }
 

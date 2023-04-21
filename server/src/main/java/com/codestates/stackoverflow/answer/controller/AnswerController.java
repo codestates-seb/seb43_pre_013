@@ -27,9 +27,9 @@ public class AnswerController {
 
     @PostMapping("/{question-id}")
     public ResponseEntity postAnswer(@PathVariable("question-id") long questionId,
-                                     @RequestBody AnswerDto.Post requestBody,
-                                     @LoginUser UserDto user){
-        requestBody.setUserId(user.getUserId());
+                                     @RequestBody AnswerDto.Post requestBody
+                                     ){
+        requestBody.setUserId(5);
         requestBody.setQuestionId(questionId);
         Answer answer = mapper.answerPostToAnswer(requestBody);
         Answer createdAnswer = answerService.createAnswer(answer);
@@ -39,9 +39,9 @@ public class AnswerController {
 
     @PutMapping("/*/{answer-id}")
     public ResponseEntity putAnswer(@PathVariable("answer-id") long answerId,
-                                    @RequestBody AnswerDto.Put requestBody,
-                                    @LoginUser UserDto user){
-        requestBody.setUserId(user.getUserId());
+                                    @RequestBody AnswerDto.Put requestBody
+                                    ){
+        requestBody.setUserId(5);
         requestBody.setAnswerId(answerId);
         Answer answer = answerService.updateAnswer(mapper.answerPutToAnswer(requestBody));
 

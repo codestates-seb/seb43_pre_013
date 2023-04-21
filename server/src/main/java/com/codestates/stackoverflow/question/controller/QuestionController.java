@@ -6,6 +6,7 @@ import com.codestates.stackoverflow.question.entity.Question;
 import com.codestates.stackoverflow.question.mapper.QuestionMapper;
 import com.codestates.stackoverflow.question.service.QuestionService;
 import com.codestates.stackoverflow.user.dto.UserDto;
+import com.codestates.stackoverflow.user.entity.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +27,9 @@ public class QuestionController {
     }
 
     @PostMapping
-    public ResponseEntity postQuestion(@RequestBody QuestionDto.Post requestBody,
-                                       @LoginUser UserDto user){
-        requestBody.setUserId(user.getUserId());
+    public ResponseEntity postQuestion(@RequestBody QuestionDto.Post requestBody
+                                       ){
+        requestBody.setUserId(5);
         Question question = mapper.questionPostToQuestion(requestBody);
         Question createdQuestion = questionService.createQuestion(question);
 
@@ -37,9 +38,9 @@ public class QuestionController {
 
     @PutMapping("/{question-id}")
     public ResponseEntity putQuestion(@PathVariable("question-id") long questionId,
-                                      @RequestBody QuestionDto.Put requestBody,
-                                      @LoginUser UserDto user){
-        requestBody.setUserId(user.getUserId());
+                                      @RequestBody QuestionDto.Put requestBody
+                                      ){
+        requestBody.setUserId(5);
         requestBody.setQuestionId(questionId);
 
         Question question = questionService.updateQuestion(mapper.questionPutToQuestion(requestBody));

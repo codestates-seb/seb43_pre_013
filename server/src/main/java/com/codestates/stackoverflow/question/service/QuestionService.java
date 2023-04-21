@@ -4,6 +4,7 @@ import com.codestates.stackoverflow.exception.BusinessLogicException;
 import com.codestates.stackoverflow.exception.ExceptionCode;
 import com.codestates.stackoverflow.question.entity.Question;
 import com.codestates.stackoverflow.question.repository.QuestionRepository;
+import com.codestates.stackoverflow.user.entity.User;
 import com.codestates.stackoverflow.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 
@@ -23,6 +23,8 @@ public class QuestionService {
 
 
     public Question createQuestion(Question question){
+        User findUser = findVerifiedUser(5);
+        question.setUser(findUser);
 
         Question savedQuestion = questionRepository.save(question);
 
@@ -75,4 +77,15 @@ public class QuestionService {
                         new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
         return findQuestion;
     }
+
+    public User findVerifiedUser(long userId){
+        Optional<User> optionalUser =
+                userRepository.findById(userId);
+
+        User finduser =
+                optionalUser.orElseThrow(()->
+                        new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
+        return finduser;
+    }
+
 }
