@@ -43,7 +43,7 @@ public class OAuth2UserInfoService implements OAuth2UserService<OAuth2UserReques
     }
 
     private User saveOrUpdate(OAuthAttributes attributes){
-        User user = userRepository.findByEmail(attributes.getEmail()).map(entity->entity.update(attributes.getName(), attributes.getNickname()))
+        User user = userRepository.findByEmail(attributes.getEmail()).map(entity -> entity.update(attributes.getName(), attributes.getEmail()))
                 .orElse(attributes.toEntity());
 
         return userRepository.save(user);

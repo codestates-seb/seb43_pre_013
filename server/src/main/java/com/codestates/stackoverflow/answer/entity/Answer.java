@@ -4,9 +4,7 @@ import com.codestates.stackoverflow.comment.entity.Comment;
 import com.codestates.stackoverflow.question.entity.Question;
 import com.codestates.stackoverflow.user.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,9 +13,12 @@ import java.util.List;
 
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Getter
 @Setter
+@Builder
+@Table(name = "answers")
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,12 +43,12 @@ public class Answer {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "QUESTION_ID")
+    @JoinColumn(name = "question_id")
     private Question question;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "answer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
@@ -69,4 +70,11 @@ public class Answer {
         }
     }
 
+    @Builder
+    public Answer(User user, Question question, String answerTitle, String answerContent){
+        this.user = user;
+        this.question = question;
+        this.answerTitle = answerTitle;
+        this.answerContent = answerContent;
+    }
 }

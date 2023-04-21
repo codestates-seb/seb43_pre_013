@@ -43,6 +43,6 @@ public class Question {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id")
     private User user;
 }
