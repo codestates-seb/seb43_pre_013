@@ -32,6 +32,7 @@ const TextEditor = styled(ReactQuill)`
   margin-left: 17px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto; //내용초과시 스크롤기능
 `;
 
 const TitleInput = styled.input`
@@ -99,6 +100,12 @@ function AskQuestion() {
       },
     };
   }, []);
+  const handleSubmit = () => {
+    //콘텐츠 내용만 보이는 함수
+    const quill = quillRef.current.getEditor();
+    const text = quill.getText();
+    console.log(text);
+  };
   return (
     <Container>
       <TitleName>Ask a Public Question</TitleName>
@@ -147,7 +154,7 @@ function AskQuestion() {
         />
       </AnswerContainer>
       <SubmitButtonContainer>
-        <SubmitButton>SUBMIT</SubmitButton>
+        <SubmitButton onClick={handleSubmit}>SUBMIT</SubmitButton>
       </SubmitButtonContainer>
     </Container>
   );
