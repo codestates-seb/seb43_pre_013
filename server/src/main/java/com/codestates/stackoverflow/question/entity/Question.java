@@ -3,9 +3,7 @@ package com.codestates.stackoverflow.question.entity;
 import com.codestates.stackoverflow.answer.entity.Answer;
 import com.codestates.stackoverflow.user.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -13,10 +11,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
+@Builder
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,4 +45,15 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+
+    @Builder
+    public Question(Long questionId, String questionTitle, String questionContent, User user, Integer view){
+        this.questionId = questionId;
+        this.questionTitle = questionTitle;
+        this.questionContent = questionContent;
+        this.user = user;
+        this.view = view;
+    }
+
 }

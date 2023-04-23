@@ -16,16 +16,15 @@ public class WebConfig implements WebMvcConfigurer {
     private final LoginUserArgumentResolver loginUserArgumentResolver;
 
     @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers){
+        argumentResolvers.add(loginUserArgumentResolver);
+    }
+
+    @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("localhost:8080")
-                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
-                .allowedHeaders("*")
-                .allowCredentials(true);
-    }
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        // HandlerMethodArgumentResolver 구현체를 여기에서 등록해줘야한다.
-        argumentResolvers.add(loginUserArgumentResolver);
+                .allowedOrigins("*");
+        // .allowedMethods("GET", "POST", "PUT", "DELETE")
+        // .allowedHeaders("*");
     }
 }

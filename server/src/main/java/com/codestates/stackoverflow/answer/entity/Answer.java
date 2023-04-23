@@ -18,7 +18,6 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@Table(name = "answers")
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -8,6 +8,7 @@ import com.codestates.stackoverflow.question.service.QuestionService;
 import com.codestates.stackoverflow.user.dto.UserDto;
 import com.codestates.stackoverflow.user.entity.User;
 import io.swagger.annotations.Api;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,17 +17,13 @@ import java.util.List;
 
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/boards/questions")
 @Api(tags = "질문")
 public class QuestionController {
     private final QuestionService questionService;
     private final QuestionMapper mapper;
 
-
-    public QuestionController(QuestionService questionService, QuestionMapper mapper){
-        this.questionService = questionService;
-        this.mapper = mapper;
-    }
 
     @PostMapping
     public ResponseEntity postQuestion(@RequestBody QuestionDto.Post requestBody
