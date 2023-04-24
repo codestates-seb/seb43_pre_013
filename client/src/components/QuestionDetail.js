@@ -33,8 +33,8 @@ export default QuetionDetail;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  border: 3px solid black;
-  width: 800px;
+  border: 2px solid #c6c5c5;
+  width: 53rem;
   /* height: px; */
   box-sizing: border-box;
   padding: 30px;
