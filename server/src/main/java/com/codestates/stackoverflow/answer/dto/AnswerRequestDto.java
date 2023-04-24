@@ -1,5 +1,6 @@
 package com.codestates.stackoverflow.answer.dto;
 
+import com.codestates.stackoverflow.answer.entity.Answer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

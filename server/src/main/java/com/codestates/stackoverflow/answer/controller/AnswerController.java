@@ -8,6 +8,7 @@ import com.codestates.stackoverflow.answer.mapper.AnswerMapper;
 import com.codestates.stackoverflow.answer.service.AnswerService;
 import com.codestates.stackoverflow.config.oauth.LoginUser;
 import com.codestates.stackoverflow.user.dto.UserDto;
+import com.codestates.stackoverflow.user.entity.User;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.ComponentScan;
@@ -41,10 +42,11 @@ public class AnswerController {
 
     @PostMapping("/{questionId}")
     @ResponseBody
-    public AnswerResponseDto createAnswer(@ApiIgnore @LoginUser UserDto user,
+    public AnswerResponseDto createAnswer(//@ApiIgnore @LoginUser UserDto user,
                                           @PathVariable Long questionId,
-                                          @RequestBody AnswerRequestDto answerRequestDto){
-        return answerService.createAnswer(user.getUserId(), questionId, answerRequestDto);
+                                          @RequestBody AnswerDto.Post answerRequestDto){
+
+        return answerService.createAnswer(1L, questionId, answerRequestDto);
     }
 
 

@@ -26,7 +26,7 @@ public class CommentService {
 
 
     public Comment createComment(Comment comment) {
-        User findUser = findVerifiedUser(5);
+        User findUser = findVerifiedUser(1);
         comment.setUser(findUser);
         Answer findAnswer = answerService.findVerifiedAnswer(comment.getAnswer().getAnswerId());
         List<Comment> comments = findAnswer.getComments();
