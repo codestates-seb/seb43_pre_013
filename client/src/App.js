@@ -1,5 +1,4 @@
 // import React from "react";
-// // import { Counter } from "./features/counter/Counter";
 //컴포넌트
 import NavigationBar from "./components/NavigationBar";
 import AskQuestion from "./components/AskQuestion";
@@ -9,6 +8,7 @@ import MainPage from "./pages/MainPage";
 import Login from "./pages/Login";
 import UserInfo from "./pages/UserInfo";
 import QuestionAskPage from "./pages/QuestionAskPage";
+import ErrorPage from "./pages/ErrorPage";
 
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
@@ -18,14 +18,14 @@ function App() {
     <div className="App">
       <NavigationBar />
       <ContentWrapper>
-        {/* <Counter /> */}
         <Routes>
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/userinfo" element={<UserInfo />}></Route>
           <Route path="/question" element={<UserInfo />}></Route>
-          <Route path="/test" element={<QuestionAskPage />}></Route>
+          <Route path="/answer" element={<QuestionAskPage />}></Route>
           <Route path="/ask" element={<AskQuestion />}></Route>
+          <Route path="/*" element={<ErrorPage />} />
         </Routes>
       </ContentWrapper>
     </div>
