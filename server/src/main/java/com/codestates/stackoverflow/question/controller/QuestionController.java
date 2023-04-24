@@ -28,7 +28,7 @@ public class QuestionController {
     @PostMapping
     public ResponseEntity postQuestion(@RequestBody QuestionDto.Post requestBody
                                        ){
-        requestBody.setUserId(5);
+        requestBody.setUserId(1);
         Question question = mapper.questionPostToQuestion(requestBody);
         Question createdQuestion = questionService.createQuestion(question);
 

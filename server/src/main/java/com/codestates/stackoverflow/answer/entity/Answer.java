@@ -69,11 +69,4 @@ public class Answer {
         }
     }
 
-    @Builder
-    public Answer(User user, Question question, String answerTitle, String answerContent){
-        this.user = user;
-        this.question = question;
-        this.answerTitle = answerTitle;
-        this.answerContent = answerContent;
-    }
 }

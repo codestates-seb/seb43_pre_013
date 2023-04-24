@@ -14,17 +14,17 @@ import java.time.LocalDateTime;
 public class AnswerResponseDto {
     private Long answerId;
     private Long questionId;
-    private Long userID;
+    private String userName;
     private String answerTitle;
     private String answerContent;
     private LocalDateTime answerRegistDate;
     private LocalDateTime answerModifyDate;
 
-
+    @Builder
     public AnswerResponseDto(Answer answer){
         this.answerId = answer.getAnswerId();
         this.questionId = answer.getQuestion().getQuestionId();
-        this.userID = answer.getUser().getUserId();
+        this.userName = answer.getUser().getName();
         this.answerTitle = answer.getAnswerTitle();
         this.answerContent = answer.getAnswerContent();
         this.answerRegistDate = answer.getAnswerRegistDate();

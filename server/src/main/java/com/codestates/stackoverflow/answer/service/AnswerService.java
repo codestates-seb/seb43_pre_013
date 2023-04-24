@@ -1,5 +1,6 @@
 package com.codestates.stackoverflow.answer.service;
 
+import com.codestates.stackoverflow.answer.dto.AnswerDto;
 import com.codestates.stackoverflow.answer.dto.AnswerRequestDto;
 import com.codestates.stackoverflow.answer.dto.AnswerResponseDto;
 import com.codestates.stackoverflow.answer.entity.Answer;
@@ -30,17 +31,19 @@ public class AnswerService {
     private final QuestionRepository questionRepository;
     private final AnswerRepository answerRepository;
     private final UserRepository userRepository;
+    private final com.codestates.stackoverflow.answer.mapper.AnswerMapper mapper;
 
 
 
     @Transactional
-    public AnswerResponseDto createAnswer(Long userId, Long questionId, AnswerRequestDto answerRequestDto){
-        Optional<User> user = userRepository.findById(userId);
+    public AnswerResponseDto createAnswer(Long userId, Long questionId, AnswerDto.Post answerRequestDto){
+        User user = findVerifiedUser(userId);
         Question question = questionRepository.findById(questionId).orElseThrow();
 
-        Answer answer = AnswerMapper.toAnswerEntity(answerRequestDto);
+        Answer answer = mapper.answerPostToAnswer(answerRequestDto);
+        answer.setAnswerStatus(Answer.AnswerStatus.ANSWER_NOT_SELECT);
         answer.setQuestion(question);
-        answer.setUser(user.get());
+        answer.setUser(user);
         Answer queryResult = answerRepository.save(answer);
 
         return AnswerMapper.toAnswerResponseDto(queryResult);

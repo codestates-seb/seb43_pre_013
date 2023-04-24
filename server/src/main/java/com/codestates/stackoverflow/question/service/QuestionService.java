@@ -23,7 +23,7 @@ public class QuestionService {
 
 
     public Question createQuestion(Question question){
-        User findUser = findVerifiedUser(5);
+        User findUser = findVerifiedUser(1);
         question.setUser(findUser);
 
         Question savedQuestion = questionRepository.save(question);

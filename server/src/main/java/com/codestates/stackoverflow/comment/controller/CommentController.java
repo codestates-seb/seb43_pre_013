@@ -24,7 +24,7 @@ public class CommentController {
     @PostMapping("/{post-id}")
     public ResponseEntity postComment(@PathVariable("post-id") long postId,
                                       @RequestBody CommentDto.Post commentDto) {
-        commentDto.setUserId(5);
+        commentDto.setUserId(1);
         commentDto.setAnswerId(postId);
         Comment comment = commentMapper.commentPostDtoToComment(commentDto);
         Comment findComment = commentService.createComment(comment);
@@ -33,10 +33,10 @@ public class CommentController {
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @PatchMapping("/{comment-id}")
+    @PutMapping("/{comment-id}")
     public ResponseEntity patchComment(@PathVariable("comment-id") Long commentId,
                                        @RequestBody CommentDto.Patch patchDto) {
-        patchDto.setUserId(5);
+        patchDto.setUserId(1);
         patchDto.setCommentId(commentId);
         Comment comment = commentMapper.commentPatchDtoToComment(patchDto);
         Comment findComment = commentService.updateComment(comment);
