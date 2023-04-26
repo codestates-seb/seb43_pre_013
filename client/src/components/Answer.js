@@ -16,7 +16,7 @@ const Container = styled.div`
 `;
 
 const SubmitButton = styled.button`
-  margin-left: 660px;
+  margin-left: 38rem;
   width: 180px;
   height: 50px;
   font-size: 18px;
@@ -26,11 +26,11 @@ const SubmitButton = styled.button`
 
 const SubmitButtonContainer = styled.div`
   padding: 5px;
-  margin: 20px;
+  margin: 10px;
 `;
 
 const TextEditor = styled(ReactQuill)`
-  width: 800px;
+  width: 50rem;
   height: 250px;
   margin-top: 30px;
   margin-bottom: 40px;
@@ -42,15 +42,17 @@ const TextEditor = styled(ReactQuill)`
 
 const TitleName = styled.h2`
   padding-top: 50px;
-  padding-bottom: 20px;
-  margin-right: 690px;
+  /* padding-bottom: 20px; */
+  margin: 0px 600px 0px 0px;
   width: 9rem;
 `;
 
 const AnswerContainer = styled.div`
   border-style: solid;
-  border-color: #d3d3d3;
+  border-style: none;
   background-color: white;
+  display: flex;
+  justify-content: center;
   width: 850px;
   height: 300px;
 `;
