@@ -13,7 +13,7 @@ import ErrorPage from "./pages/ErrorPage";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <NavigationBar />
@@ -22,15 +22,17 @@ function App() {
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/userinfo" element={<UserInfo />}></Route>
-          <Route path="/question" element={<UserInfo />}></Route>
-          <Route path="/answer" element={<QuestionAskPage />}></Route>
+          <Route
+            path="/boards/answer/:id"
+            element={<QuestionAskPage />}
+          ></Route>
           <Route path="/ask" element={<AskQuestion />}></Route>
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
       </ContentWrapper>
     </div>
   );
-}
+};
 export default App;
 
 const ContentWrapper = styled.div`

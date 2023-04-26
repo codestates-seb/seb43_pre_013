@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const QuestionsHeader = () => {
   return (
     <Container>
       <TopHalf>
         <Title>Top Questions</Title>
-        <AskQuestionBtn>Ask Question</AskQuestionBtn>
+        <AskQuestionBtn to="/ask">Ask Question</AskQuestionBtn>
       </TopHalf>
       <BottomHalf>
         <OptionBtn>Interesting</OptionBtn>
@@ -21,9 +22,9 @@ const QuestionsHeader = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  border: 3px solid black;
-  width: 800px;
-  height: 150px;
+  border: 2px solid black;
+  width: 60rem;
+  height: 12rem;
   box-sizing: border-box;
   padding: 30px;
 `;
@@ -41,22 +42,31 @@ const BottomHalf = styled.div`
   justify-content: flex-end; // 내부 요소를 오른쪽 끝으로 정렬
 `;
 
-const Title = styled.h1`
-  color: black;
-`;
-const AskQuestionBtn = styled.button`
+const Title = styled.h1``;
+
+const StyledLink = styled(Link)`
   color: white;
   background-color: blue;
   cursor: pointer;
   border-radius: 4px;
   border: none;
-  height: 40px;
-  width: 100px;
-  // 호버 시 스타일 변경
+  height: 2rem;
+  width: 6rem;
+  font-size: 0.9em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+
   &:hover {
     background-color: darkblue;
   }
 `;
+
+const AskQuestionBtn = () => {
+  return <StyledLink to="/ask">Ask Question</StyledLink>;
+};
 
 const OptionBtn = styled.button`
   cursor: pointer;
