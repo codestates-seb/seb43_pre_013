@@ -135,6 +135,8 @@ export default QuestionDetail;
 const DeatailWrapper = styled.div`
   border: 1px solid #d3d3d3;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const List = styled.li`
