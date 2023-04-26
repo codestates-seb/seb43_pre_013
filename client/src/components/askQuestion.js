@@ -2,6 +2,8 @@ import { useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   min-height: calc(100vh - 60px); //스크롤 했을 시 배경색이 달라지는 문제점 해결
@@ -83,9 +85,12 @@ const AnswerContainer = styled.div`
 `;
 
 function AskQuestion() {
-  const quillRef = useRef();
+  const quillRef1 = useRef();
+  const quillRef2 = useRef();
+  const [title, setTitle] = useState("");
   const [content1, setContent1] = useState("");
   const [content2, setContent2] = useState("");
+
   const modules = useMemo(() => {
     return {
       toolbar: {
@@ -100,12 +105,33 @@ function AskQuestion() {
       },
     };
   }, []);
+
   const handleSubmit = () => {
-    //콘텐츠 내용만 보이는 함수
-    const quill = quillRef.current.getEditor();
-    const text = quill.getText();
-    console.log(text);
+    const quill1 = quillRef1.current.getEditor();
+    const quill2 = quillRef2.current.getEditor();
+    const text = quill1.getText() + quill2.getText();
+    const data = {
+      questionTitle: title,
+      questionContent: text,
+    };
+
+    axios
+      .post(
+        "http://ec2-3-36-201-96.ap-northeast-2.compute.amazonaws.com:8080/boards/questions",
+        data
+      )
+      .then((response) => {
+        response.json();
+
+        window.location.href = "/";
+
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.config.data);
+      });
   };
+
   return (
     <Container>
       <TitleName>Ask a Public Question</TitleName>
@@ -117,6 +143,7 @@ function AskQuestion() {
         <TitleInput
           type="text"
           placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
+          onChange={(e) => setTitle(e.target.value)}
         />
       </TitleBox>
       <AnswerContainer>
@@ -129,7 +156,7 @@ function AskQuestion() {
           className="text-editor"
           placeholder="Please type"
           theme="snow"
-          ref={quillRef}
+          ref={quillRef1}
           value={content1}
           onChange={setContent1}
           modules={modules}
@@ -147,14 +174,16 @@ function AskQuestion() {
           className="text-editor"
           placeholder="Please type"
           theme="snow"
-          ref={quillRef}
+          ref={quillRef2}
           value={content2}
           onChange={setContent2}
           modules={modules}
         />
       </AnswerContainer>
       <SubmitButtonContainer>
-        <SubmitButton onClick={handleSubmit}>SUBMIT</SubmitButton>
+        <Link to="/">
+          <SubmitButton onClick={handleSubmit}>SUBMIT</SubmitButton>
+        </Link>
       </SubmitButtonContainer>
     </Container>
   );

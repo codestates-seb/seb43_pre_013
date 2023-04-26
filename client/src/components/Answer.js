@@ -2,10 +2,12 @@ import { useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
+import axios from "axios";
 
 const Container = styled.div`
   min-height: calc(100vh - 60px); //스크롤 했을 시 배경색이 달라지는 문제점 해결
-  background-color: #ececec;
+  background-color: white;
+  /* border-top: 3px solid gray; */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -42,6 +44,7 @@ const TitleName = styled.h2`
   padding-top: 50px;
   padding-bottom: 20px;
   margin-right: 690px;
+  width: 9rem;
 `;
 
 const AnswerContainer = styled.div`
@@ -52,7 +55,11 @@ const AnswerContainer = styled.div`
   height: 300px;
 `;
 
-function Answer() {
+const Answer = (id) => {
+  // console.log(id);
+  // Answer.propTypes = {
+  //   id: PropTypes.number.isRequired,
+  // };
   const quillRef = useRef();
   const [content, setContent] = useState("");
   const modules = useMemo(() => {
@@ -69,12 +76,37 @@ function Answer() {
       },
     };
   }, []);
-  const handleSubmit = () => {
-    //콘텐츠 내용만 보이는 함수
+
+  const handlePostAnswer = () => {
     const quill = quillRef.current.getEditor();
     const text = quill.getText();
-    console.log(text);
+    const data = {
+      answerId: id,
+      answerTitle: "",
+      answerContent: text,
+    };
+
+    console.log(id);
+
+    axios
+      .post(
+        `http://ec2-3-36-201-96.ap-northeast-2.compute.amazonaws.com:8080/boards/answers/${id.id}`,
+        data
+      )
+      .then((response) => {
+        try {
+          const data = response.data;
+          // window.location.href = "/";
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
   return (
     <Container>
       <TitleName>Your Answer</TitleName>
@@ -90,10 +122,10 @@ function Answer() {
         />
       </AnswerContainer>
       <SubmitButtonContainer>
-        <SubmitButton onClick={handleSubmit}>Post Your Answer</SubmitButton>
+        <SubmitButton onClick={handlePostAnswer}>Post Your Answer</SubmitButton>
       </SubmitButtonContainer>
     </Container>
   );
-}
+};
 
 export default Answer;
