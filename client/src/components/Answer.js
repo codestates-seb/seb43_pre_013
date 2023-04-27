@@ -77,7 +77,7 @@ const Answer = (id) => {
     const quill = quillRef.current.getEditor();
     const text = quill.getText();
     const data = {
-      answerId: id,
+      questionId: id,
       answerTitle: "",
       answerContent: text,
     };

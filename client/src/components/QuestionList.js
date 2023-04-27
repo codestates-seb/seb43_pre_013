@@ -14,13 +14,13 @@ const Container = styled.div`
 const QuestionList = styled.ul`
   width: 60rem;
   padding: 0px;
-  margin-top: 20px;
+  margin-top: 15px;
   list-style: none;
 `;
 
 const List = styled.li`
   padding: 10px;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   width: 58.5rem;
   border-bottom: 3px solid lightgray;
 `;
@@ -32,7 +32,7 @@ const QuestionListPage = () => {
     )
       .then((response) => response.json())
       .then((data) => setQuestionList(data));
-  };
+  }; //얘는 건드릴 필요 없음
 
   const [questionList, setQuestionList] = useState([]);
 
