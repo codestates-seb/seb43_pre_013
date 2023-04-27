@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Answer from "./Answer";
+import axios from "axios";
 
 const QuestionDetail = () => {
   const [question, setQuestion] = useState({});
@@ -65,17 +66,41 @@ const QuestionDetail = () => {
 
   const [comments, setComments] = useState([]);
 
+  const handleCommentSubmit = (value) => {
+    const data = {
+      text: value,
+    };
+
+    axios
+      .post(
+        `http://ec2-3-36-201-96.ap-northeast-2.compute.amazonaws.com:8080/boards/comm/${id}`,
+        data
+      )
+      .then((response) => {
+        response.json();
+        window.location.href = "/";
+        console.log(response.data);
+      });
+    // .catch((error) => {
+    //   console.log(error.config.data);
+    // });
+  };
+
   useEffect(() => {
     fetch(
-      `http://ec2-3-36-201-96.ap-northeast-2.compute.amazonaws.com:8080/boards/answers/${id}`
+      `http://ec2-3-36-201-96.ap-northeast-2.compute.amazonaws.com:8080/boards/questions/${id}`
     )
       .then((response) => response.json())
-      .then((data) => setComments(data));
+      .then((data) => {
+        setComments(data.answers);
+      });
   }, [id]);
 
   if (!question) {
     return <div>Loading...</div>;
   }
+
+  const [commentInput, setCommentInput] = useState("");
 
   return (
     <Container>
@@ -115,14 +140,33 @@ const QuestionDetail = () => {
           </div>
         </ButtonContainer>
       </DeatailWrapper>
+      <Title>댓글</Title>
+      <CommentForm>
+        {comments.map((ans) => (
+          <div key={ans.answerId}>
+            {ans.comments.length !== 0 &&
+              ans.comments.map((el) => (
+                <div key={el.commentId}>답글 : {el.text}</div>
+              ))}
+          </div>
+        ))}
+        <textarea
+          value={commentInput}
+          onChange={(e) => setCommentInput(e.target.value)}
+        />
+        <CButton onClick={() => handleCommentSubmit(commentInput)}>
+          답변달기
+        </CButton>
+      </CommentForm>
+      <Title>답변</Title>
       <AnswerList>
-        {/* 아래는 Answer을 작성하면 /boards/answers/${id}에 저장되도록 하는 기능을 구현해야함 */}
-        <List key={comments.answerId}>
-          <ol>
-            <div>댓글 순서 : {comments.answerId}</div>
-            <div>내용 : {comments.answerContent}</div>
-          </ol>
-        </List>
+        {comments.map((ans) => (
+          <List key={ans.answerId}>
+            <ol>
+              <h3>내용 : {ans.answerContent}</h3>
+            </ol>
+          </List>
+        ))}
       </AnswerList>
       <Answer id={id}></Answer>
     </Container>
@@ -131,19 +175,18 @@ const QuestionDetail = () => {
 
 export default QuestionDetail;
 
-const DeatailWrapper = styled.div`
-  border: 1px solid #d3d3d3;
-  padding: 40px;
+const CommentForm = styled.div`
+  margin-left: 40px;
+  border: 1px solid lightgray;
+  padding: 30px;
+  margin-right: 28px;
   display: flex;
   flex-direction: column;
 `;
 
-const List = styled.li`
-  border: 1px solid #d3d3d3;
-  padding: 10px;
-  margin: 5px;
-  list-style: none;
-  width: 47rem;
+const CButton = styled.button`
+  /* width: 50px;
+  height: 50px; */
 `;
 
 const AnswerList = styled.ul`
@@ -151,6 +194,23 @@ const AnswerList = styled.ul`
   padding: 0px;
   margin: 0;
   list-style: none;
+`;
+
+const List = styled.li`
+  border: 1px solid #d3d3d3;
+  padding: 30px;
+  margin: 5px;
+  list-style: none;
+  width: 44rem;
+  /* display: flex;
+  flex-direction: column; */
+`;
+
+const DeatailWrapper = styled.div`
+  border: 1px solid #d3d3d3;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Container = styled.div`

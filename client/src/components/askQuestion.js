@@ -124,10 +124,10 @@ function AskQuestion() {
         response.json();
         window.location.href = "/";
         console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error.config.data);
       });
+    // .catch((error) => {
+    //   console.log(error.config.data);
+    // });
   };
 
   return (
