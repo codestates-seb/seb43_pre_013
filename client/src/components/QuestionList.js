@@ -7,6 +7,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  border-left: 3px solid lightgray;
   min-height: 100%;
 `;
 
@@ -45,12 +46,12 @@ const QuestionListPage = () => {
       <QuestionList>
         {questionList.map((el) => (
           <List key={el.questionId}>
-            <Link to={`/boards/answer/${el.questionId}`}>
+            <StyledLink to={`/boards/answer/${el.questionId}`}>
               {/* <div>순서 : {el.questionId}</div>  */}
               <div>제목 : {el.questionTitle}</div>
               <div>등록일 : {el.questionRegistDate}</div>
               <div>조회수 : {el.view}</div>
-            </Link>
+            </StyledLink>
           </List>
         ))}
       </QuestionList>
@@ -59,3 +60,7 @@ const QuestionListPage = () => {
 };
 
 export default QuestionListPage;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
