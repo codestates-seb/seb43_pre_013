@@ -8,14 +8,9 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-// const Message = styled.h1`
-//   font-size: 2rem;
-// `;
-
 const Login = () => {
   return (
     <Container>
-      {/* <Message>로그인 페이지 입니다</Message> */}
       <GoogleLogin />
     </Container>
   );

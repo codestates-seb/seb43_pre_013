@@ -14,7 +14,7 @@ const ContentWrapper = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  align-items: center; // 수직 중앙 정렬
+  align-items: center;
 `;
 
 export default MainPage;

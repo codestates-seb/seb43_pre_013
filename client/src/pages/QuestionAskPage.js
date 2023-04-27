@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import QuestionDetail from "../components/QuestionDetail";
-// import Answer from "../components/Answer";
 
 const QuestionAskPage = () => {
   const [questionData, setQuestionData] = useState(null);

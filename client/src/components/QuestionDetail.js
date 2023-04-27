@@ -55,7 +55,6 @@ const QuestionDetail = () => {
   //     .catch((error) => console.error(error));
   // };
 
-  //상단에 질문 띄우기위해 가져오는것
   useEffect(() => {
     fetch(
       `http://ec2-3-36-201-96.ap-northeast-2.compute.amazonaws.com:8080/boards/questions/${id}`
@@ -145,7 +144,6 @@ const List = styled.li`
   margin: 5px;
   list-style: none;
   width: 47rem;
-  /* border-bottom: 3px solid gray; */
 `;
 
 const AnswerList = styled.ul`
@@ -158,9 +156,7 @@ const AnswerList = styled.ul`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  /* border: 2px solid #c6c5c5; */
   width: 53rem;
-  /* height: px; */
   box-sizing: border-box;
   padding: 30px;
   & > * {
@@ -169,17 +165,16 @@ const Container = styled.div`
 `;
 
 const TopHalf = styled.div`
-  flex: 1; // 상하로 절반 나누기 위해 공간을 동일하게 할당
-  display: flex; // flex를 사용하여 내부 요소를 정렬
+  flex: 1;
+  display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 `;
 
 const BottomHalf = styled.div`
-  flex: 1; // 상하로 절반 나누기 위해 공간을 동일하게 할당
-  display: flex; // flex를 사용하여 내부 요소를 정렬
+  flex: 1;
+  display: flex;
   padding-left: 10px;
-  /* justify-content: flex-end; // 내부 요소를 오른쪽 끝으로 정렬 */
 `;
 
 const QuestionInfo = styled.p`
@@ -202,7 +197,6 @@ const AskQuestionBtn = styled.button`
   border: none;
   height: 40px;
   width: 100px;
-  // 호버 시 스타일 변경
   &:hover {
     background-color: darkblue;
   }

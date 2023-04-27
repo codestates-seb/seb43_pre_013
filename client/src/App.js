@@ -1,9 +1,6 @@
-// import React from "react";
-//컴포넌트
 import NavigationBar from "./components/NavigationBar";
 import AskQuestion from "./components/AskQuestion";
 
-//페이지
 import MainPage from "./pages/MainPage";
 import Login from "./pages/Login";
 import UserInfo from "./pages/UserInfo";
@@ -37,6 +34,4 @@ export default App;
 
 const ContentWrapper = styled.div`
   margin-top: 60px;
-  //수평 중앙 정렬
-  /* align-items: center; // 수직 중앙 정렬 */
 `;

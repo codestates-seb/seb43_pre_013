@@ -42,12 +42,10 @@ const QuestionListPage = () => {
 
   return (
     <Container>
-      {/* <ListTitle>질문 목록</ListTitle> */}
       <QuestionList>
         {questionList.map((el) => (
           <List key={el.questionId}>
             <StyledLink to={`/boards/answer/${el.questionId}`}>
-              {/* <div>순서 : {el.questionId}</div>  */}
               <div>제목 : {el.questionTitle}</div>
               <div>등록일 : {el.questionRegistDate}</div>
               <div>조회수 : {el.view}</div>

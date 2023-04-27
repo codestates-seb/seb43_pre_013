@@ -8,12 +8,11 @@ const Navbar = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 2rem;
-  /* 상단에 고정 */
   position: fixed;
-  top: 0; //추가
-  left: 0; //추가
+  top: 0;
+  left: 0;
   right: 0;
-  height: 60px; //컨텐츠 가려짐을 위해 높이추가
+  height: 60px;
   z-index: 100;
   box-sizing: border-box;
   border-top: 3px solid #f97324;
@@ -55,7 +54,7 @@ const NavLink = styled(Link)`
     text-decoration: underline;
   }
 `;
-// 버튼 스타일(상속을 위해 기본 스타일링)
+
 const Button = styled(Link)`
   text-decoration: none;
   font-size: 1rem;
@@ -84,7 +83,6 @@ const SignUpButton = styled(Button)`
   }
 `;
 
-// 로그인 성공 시 사용자 정보 표시 컴포넌트
 const UserInfo = styled.div`
   font-size: 1rem;
   margin-left: 1rem;
