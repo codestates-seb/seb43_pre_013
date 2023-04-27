@@ -13,20 +13,15 @@ const Container = styled.div`
 const QuestionList = styled.ul`
   width: 60rem;
   padding: 0px;
-  margin: 0;
+  margin-top: 20px;
   list-style: none;
 `;
 
 const List = styled.li`
   padding: 10px;
-  margin-bottom: 20px;
-  list-style: none;
+  margin-bottom: 15px;
   width: 58.5rem;
-  border-bottom: 3px solid gray;
-`;
-
-const ListTitle = styled.h2`
-  border-bottom: 2px solid gray;
+  border-bottom: 3px solid lightgray;
 `;
 
 const QuestionListPage = () => {
@@ -46,17 +41,15 @@ const QuestionListPage = () => {
 
   return (
     <Container>
-      <ListTitle>질문 목록</ListTitle>
+      {/* <ListTitle>질문 목록</ListTitle> */}
       <QuestionList>
         {questionList.map((el) => (
           <List key={el.questionId}>
             <Link to={`/boards/answer/${el.questionId}`}>
-              <ol>
-                <div>순서 : {el.questionId}</div>
-                <div>제목 : {el.questionTitle}</div>
-                <div>등록일 : {el.questionRegistDate}</div>
-                <div>조회수 : {el.view}</div>
-              </ol>
+              {/* <div>순서 : {el.questionId}</div>  */}
+              <div>제목 : {el.questionTitle}</div>
+              <div>등록일 : {el.questionRegistDate}</div>
+              <div>조회수 : {el.view}</div>
             </Link>
           </List>
         ))}
