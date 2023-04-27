@@ -6,13 +6,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  min-height: calc(100vh - 60px); //스크롤 했을 시 배경색이 달라지는 문제점 해결
+  min-height: calc(100vh - 60px);
   background-color: #ececec;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; //상하기준 중심
-  align-items: center; //좌우기준 중심
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 const TitleBox = styled.div`
@@ -34,7 +34,7 @@ const TextEditor = styled(ReactQuill)`
   margin-left: 17px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto; //내용초과시 스크롤기능
+  overflow-y: auto;
 `;
 
 const TitleInput = styled.input`
@@ -122,9 +122,7 @@ function AskQuestion() {
       )
       .then((response) => {
         response.json();
-
         window.location.href = "/";
-
         console.log(response.data);
       })
       .catch((error) => {

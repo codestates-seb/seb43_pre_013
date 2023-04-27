@@ -1,4 +1,3 @@
-// GoogleLoginButton.js
 import styled from "styled-components";
 
 const Button = styled.button`
@@ -37,7 +36,6 @@ const GoogleLogin = () => {
   return (
     <Button>
       <Logo src={imgScr} alt="Google Logo" />
-      {/* <a></a> */}
       <StyleLink href={url}>Login with Google</StyleLink>
     </Button>
   );

@@ -5,14 +5,13 @@ import ReactQuill from "react-quill";
 import axios from "axios";
 
 const Container = styled.div`
-  min-height: calc(100vh - 60px); //스크롤 했을 시 배경색이 달라지는 문제점 해결
+  min-height: calc(100vh - 60px);
   background-color: white;
-  /* border-top: 3px solid gray; */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; //상하기준 중심
-  align-items: center; //좌우기준 중심
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 const SubmitButton = styled.button`
@@ -37,12 +36,11 @@ const TextEditor = styled(ReactQuill)`
   margin-left: 17px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto; //내용초과시 스크롤기능
+  overflow-y: auto;
 `;
 
 const TitleName = styled.h2`
   padding-top: 50px;
-  /* padding-bottom: 20px; */
   margin: 0px 600px 0px 0px;
   width: 9rem;
 `;
@@ -58,10 +56,6 @@ const AnswerContainer = styled.div`
 `;
 
 const Answer = (id) => {
-  // console.log(id);
-  // Answer.propTypes = {
-  //   id: PropTypes.number.isRequired,
-  // };
   const quillRef = useRef();
   const [content, setContent] = useState("");
   const modules = useMemo(() => {
@@ -98,7 +92,6 @@ const Answer = (id) => {
       .then((response) => {
         try {
           const data = response.data;
-          // window.location.href = "/";
           console.log(data);
         } catch (error) {
           console.log(error);

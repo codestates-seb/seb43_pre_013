@@ -30,16 +30,16 @@ const Container = styled.div`
 `;
 
 const TopHalf = styled.div`
-  flex: 1; // 상하로 절반 나누기 위해 공간을 동일하게 할당
-  display: flex; // flex를 사용하여 내부 요소를 정렬
+  flex: 1;
+  display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 `;
 
 const BottomHalf = styled.div`
-  flex: 1; // 상하로 절반 나누기 위해 공간을 동일하게 할당
-  display: flex; // flex를 사용하여 내부 요소를 정렬
-  justify-content: flex-end; // 내부 요소를 오른쪽 끝으로 정렬
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const Title = styled.h1``;
