@@ -1,3 +1,4 @@
+/*
 package com.codestates.stackoverflow.config;
 
 import org.springframework.security.core.AuthenticationException;
@@ -16,4 +17,4 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
                          AuthenticationException authException) throws IOException, ServletException {
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }
-}
+}*/
